@@ -1,0 +1,17 @@
+.myButtonBig {
+  background-color: rgb(132, 190, 132);
+  width: 220px;
+  height: 80px;
+}
+
+.myButtonMedium {
+  background-color: rgb(132, 190, 132);
+  width: 140px;
+  height: 70px;
+}
+
+.myButtonSmall {
+  background-color: rgb(132, 190, 132);
+  width: 80px;
+  height: 32px;
+}
