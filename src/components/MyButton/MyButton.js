@@ -1,9 +1,7 @@
 import React from "react";
 import classNames from "./MyButton.module.css";
 
-
-
-const MyButton = ({onClick, titre, size}) => {
+const MyButton = ({ onClick, titre, size }) => {
   let styleName;
 
   switch (size) {
@@ -20,14 +18,12 @@ const MyButton = ({onClick, titre, size}) => {
       styleName = classNames.myButtonMedium;
       break;
   }
-  
+
   return (
-    <button className={styleName } onClick={onClick}>
+    <button className={styleName} onClick={onClick}>
       {titre}
     </button>
   );
 };
 
 export default MyButton;
-
-
