@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MyButton from "../MyButton/MyButton";
 
 function Compteur() {
