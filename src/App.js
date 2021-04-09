@@ -10,6 +10,7 @@ const App = () => {
   return (
     <div className="App">
       <Header></Header>
+      <LabeledInput></LabeledInput>
       <Compteur></Compteur>
       <ColorChanger></ColorChanger>
       <Footer></Footer>

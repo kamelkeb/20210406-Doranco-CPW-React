@@ -7,32 +7,32 @@ const buttonsScheme = [
   {
     titre: "+ bleu",
     color: 2,
-    incr: 20,
+    sign: +1,
   },
   {
     titre: "- bleu",
     color: 2,
-    incr: -20,
+    sign: -1,
   },
   {
     titre: "+ vert",
     color: 1,
-    incr: 20,
+    sign: 1,
   },
   {
     titre: "- vert",
     color: 1,
-    incr: -20,
+    sign: -1,
   },
   {
     titre: "+ rouge",
     color: 0,
-    incr: 20,
+    sign: 1,
   },
   {
     titre: "- rouge",
     color: 0,
-    incr: -20,
+    sign: -1,
   },
 ];
 
@@ -41,7 +41,6 @@ function ColorChanger() {
   const [red, setRed] = useState(255);
   const [green, setGreen] = useState(255);
   const [radius, setRadius] = useState(0);
-  const [delta, setDelta] = useState(20);
 
   const changeColor = (c, delta) => {
     switch (c) {
@@ -60,24 +59,33 @@ function ColorChanger() {
   };
 
   const moreRadius = () => {
-    setRadius(radius + 20);
+    setRadius(radius + delta);
   };
   const lessRadius = () => {
-    setRadius(radius - 20);
+    setRadius(radius - delta);
   };
+
+  const [delta, setDelta] = useState(20);
+
   const inputHandler = (event) => {
     setDelta(event.target.value);
   };
   return (
     <div>
-      <LabeledInput value={delta} inputHandler={inputHandler}></LabeledInput>
+      <LabeledInput
+        value={delta}
+        inputHandler={inputHandler}
+        label="Saisir le mentant de changement souhaité:"
+      ></LabeledInput>
+
       <p>La valeur de l'incrément est de: {delta}</p>
+
       {buttonsScheme.map((element, index) => (
         <MyButton
           key={"button" + index}
           size="big"
           titre={element.titre}
-          onClick={() => changeColor(element.color, element.incr)}
+          onClick={() => changeColor(element.color, element.sign * delta)}
         ></MyButton>
       ))}
       <MyButton
