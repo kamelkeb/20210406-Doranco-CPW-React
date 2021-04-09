@@ -15,7 +15,7 @@ const buttonsScheme = [
   {
     titre: "- bleu",
     color: 2,
-    incr: 20,
+    incr: -20,
   },
   {
     titre: "+ vert",
