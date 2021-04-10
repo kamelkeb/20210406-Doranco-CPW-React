@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MyButton from "../MyButton/MyButton";
-import { validValue } from "../../helpers/colors";
+import { validColorValue, isValidDelta } from "../../helpers/colors";
 import LabeledInput from "../LabeledInput/LabeledInput";
 
 const buttonsScheme = [
@@ -41,17 +41,18 @@ function ColorChanger() {
   const [red, setRed] = useState(255);
   const [green, setGreen] = useState(255);
   const [radius, setRadius] = useState(0);
+  const [delta, setDelta] = useState(20);
 
   const changeColor = (c, delta) => {
     switch (c) {
       case 0:
-        setRed(validValue(red + delta));
+        setRed(validColorValue(red + delta));
         break;
       case 1:
-        setGreen(validValue(green + delta));
+        setGreen(validColorValue(green + delta));
         break;
       case 2:
-        setBlue(validValue(blue + delta));
+        setBlue(validColorValue(blue + delta));
         break;
       default:
         break;
@@ -65,11 +66,25 @@ function ColorChanger() {
     setRadius(radius - delta);
   };
 
-  const [delta, setDelta] = useState(20);
-
   const inputHandler = (event) => {
     setDelta(event.target.value);
   };
+
+  const errMessageUI = isValidDelta(delta) ? null : (
+    <span style={{ color: "red" }}>
+      Attention veuillez saisir un nombre entre 0 et 255
+    </span>
+  );
+
+  const buttonsSchemeComponents = buttonsScheme.map((element, index) => (
+    <MyButton
+      key={"button" + index}
+      size="big"
+      titre={element.titre}
+      onClick={() => changeColor(element.color, element.sign * delta)}
+    ></MyButton>
+  ));
+
   return (
     <div>
       <LabeledInput
@@ -77,17 +92,12 @@ function ColorChanger() {
         inputHandler={inputHandler}
         label="Saisir le mentant de changement souhaité:"
       ></LabeledInput>
+      {errMessageUI}
 
       <p>La valeur de l'incrément est de: {delta}</p>
 
-      {buttonsScheme.map((element, index) => (
-        <MyButton
-          key={"button" + index}
-          size="big"
-          titre={element.titre}
-          onClick={() => changeColor(element.color, element.sign * delta)}
-        ></MyButton>
-      ))}
+      {buttonsSchemeComponents}
+
       <MyButton
         size="medium"
         titre="Plus radius"

@@ -1,14 +1,10 @@
-import React from 'react';
-import classNames from './Header.module.css'
+import React from "react";
+import classNames from "./Header.module.css";
 
-
-
-function Header() {
-    return (
-        <div className={classNames.myHeader}>
-            Mon Header
-        </div>
-    )
+function Header({ prenom }) {
+  return (
+    <div className={classNames.myHeader}>Mon Header Bonjour {prenom} !</div>
+  );
 }
 
 export default Header;

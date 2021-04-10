@@ -7,9 +7,14 @@ import ColorChanger from "./components/ColorChanger/ColorChanger";
 import LabeledInput from "./components/LabeledInput/LabeledInput";
 
 const App = () => {
+  const [prenom, setPrenom] = useState("");
+
+  const inputHandler = (event) => {
+    setPrenom(event.target.value);
+  };
   return (
     <div className="App">
-      <Header></Header>
+      <Header prenom={prenom}></Header>
 
       <Compteur></Compteur>
       <ColorChanger></ColorChanger>
@@ -19,3 +24,13 @@ const App = () => {
 };
 
 export default App;
+
+/*
+const t = (
+  <LabeledInput
+    value={prenom}
+    inputHandler={inputHandler}
+    label="Veuillez saisir votre prénom:"
+  ></LabeledInput>
+);
+*/
